@@ -1,0 +1,15 @@
+.categoryInfoContent {
+    width: '100%';
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.menuBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.categoryBtn {
+    margin: 5px;
+}

@@ -1,0 +1,23 @@
+.titleInfoContent {
+    width: '100%';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleAdditionalInfoContent {
+    margin-top: 24px;
+    display: flex;
+    justify-content: left;
+}
+
+.menuBoxTitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.funcBtnBox {
+    display: flex;
+    justify-self: end;
+}

@@ -1,0 +1,6 @@
+id,username,email,role,bio,first_name,last_name,password,is_superuser,is_staff,is_active,date_joined
+100,bingobongo,bingobongo@yamdb.fake,user,,,,password1,0,0,0,2019-09-24T21:08:21.567Z
+101,capt_obvious,capt_obvious@yamdb.fake,admin,,,,password2,0,0,0,2019-09-24T21:08:21.567Z
+102,faust,faust@yamdb.fake,user,,,,password3,0,0,0,2019-09-24T21:08:21.567Z
+103,reviewer,reviewer@yamdb.fake,user,,,,password4,0,0,0,2019-09-24T21:08:21.567Z
+104,angry,angry@yamdb.fake,moderator,,,,password5,0,0,0,2019-09-24T21:08:21.567Z

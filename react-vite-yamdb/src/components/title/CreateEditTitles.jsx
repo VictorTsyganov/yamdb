@@ -49,12 +49,12 @@ export default function CreateEditTitles() {
 
                 })
         }
-        if(id){
+        if (id) {
             preEditTitle()
         } else {
             preCreateTitle()
         }
-        
+
     }
     const onClose = () => {
         navigate(-1)
@@ -95,8 +95,8 @@ export default function CreateEditTitles() {
                 setShowError={setShowError}
             />
             {!id && <h3>Создание произведения</h3>}
-            {id &&<h3>Изменение произведения</h3>}
-            <br/>
+            {id && <h3>Изменение произведения</h3>}
+            <br />
             <Form
                 form={form}
                 name="basic"
@@ -182,7 +182,7 @@ export default function CreateEditTitles() {
                 </Form.Item>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'right' }}>
                     <Button type="primary" htmlType="submit" >
-                        {id? 'Сохранить изменения': 'Создать'}
+                        {id ? 'Сохранить изменения' : 'Создать'}
                     </Button>
                     <Button style={{ marginLeft: '1rem' }} type="primary" onClick={onClose} >
                         Закрыть

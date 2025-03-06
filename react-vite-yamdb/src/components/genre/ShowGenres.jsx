@@ -67,7 +67,7 @@ export default function ShowGenres() {
             <Space direction="vertical" style={spaseStyle}>
                 <h3 style={{ textAlign: 'left' }}>Поиск категории по названию</h3>
                 <div className="menuBox">
-                    <Input placeholder="Начните вводить название жанра" {...input} />
+                    <Input placeholder="Начните вводить название жанра" onChange={input.onChange} />
                     {loggedIn && <Button type="primary" style={{ marginLeft: '1rem' }} onClick={() => { setShowCreateGenre(true) }}>
                         Создать новый жанр
                     </Button>}

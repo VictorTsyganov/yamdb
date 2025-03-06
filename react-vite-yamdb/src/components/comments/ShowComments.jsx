@@ -91,7 +91,7 @@ export default function ShowComments({ title_id, review_id }) {
                     setLoadingFullScr(true)
                     setTimeout(() => {
                         setLoadingFullScr(false)
-                        preloadCommentsPagination(currentPage)
+                        preloadComments()
                     }, 3000)
                 }
             })

@@ -176,6 +176,77 @@ class Api {
         })
     }
 
+    getUsers() {
+        return axios.get(`${this._url}/api/v1/users/`,
+            {
+                headers: {
+                    ...this._headers,
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                }
+            }
+        )
+    }
+
+    getMe() {
+        return axios.get(`${this._url}/api/v1/users/me/`,
+            {
+                headers: {
+                    ...this._headers,
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                }
+            }
+        )
+    }
+
+    getUser(username) {
+        return axios.get(`${this._url}/api/v1/users/${username}/`,
+            {
+                headers: {
+                    ...this._headers,
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                }
+            }
+        )
+    }
+
+    getUsersPagination(pageNumber) {
+        return axios.get(`${this._url}/api/v1/users/?page=${pageNumber}`, 
+            {
+                headers: {
+                    ...this._headers,
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                }
+            }
+        )
+    }
+
+    delUser(username) {
+        return axios.delete(`${this._url}/api/v1/users/${username}/`, {
+            headers: {
+                ...this._headers,
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        })
+    }
+
+    createUsers(value) {
+        return axios.post(`${this._url}/api/v1/users/`, value, {
+            headers: {
+                ...this._headers,
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        })
+    }
+
+    editUsers(username, value) {
+        return axios.patch(`${this._url}/api/v1/users/${username}/`, value, {
+            headers: {
+                ...this._headers,
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        })
+    }
+
 }
 
 export default new Api(apiUrl || 'http://localhost', { 'content-type': 'application/json' })

@@ -13,6 +13,8 @@ import { useAuthContext } from '../../context/auth-context';
 import CreateEditTitles from '../title/CreateEditTitles';
 import ShowReviews from '../reviews/ShowReviews';
 import CreateEditReviews from '../reviews/CreateEditReviews';
+import ShowUsers from '../users/ShowUsers';
+import CreateEditUsers from '../users/CreateEditUsers';
 const { Content } = Layout;
 
 export default function AppContent() {
@@ -33,6 +35,7 @@ export default function AppContent() {
             return response;
         }, (error) => {
             if (error.response.status === 401) {
+                console.log(error)
                 sessionStorage.removeItem('token')
                 sessionStorage.removeItem('username')
                 changeLoggedIn(false)
@@ -60,6 +63,9 @@ export default function AppContent() {
                         <Route path='/titles/:title_id/reviews/' element={<ShowReviews />} />
                         <Route path='/titles/:title_id/create_reviews/' element={<CreateEditReviews />} />
                         <Route path='/titles/:title_id/create_reviews/:review_id' element={<CreateEditReviews />} />
+                        <Route path='/users' element={<ShowUsers />} />
+                        <Route path='/create_user' element={<CreateEditUsers />} />
+                        <Route path='/create_user/:username' element={<CreateEditUsers />} />
                     </Routes>
                 </GenCatContextProvider>
             </Content>

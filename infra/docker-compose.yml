@@ -1,0 +1,36 @@
+version: '3.3'
+
+volumes:
+  static:
+  front:
+  templates:
+
+services:
+  backend:
+    build:
+      context: ../api_yamdb
+      dockerfile: Dockerfile
+    env_file: ../api_yamdb/api_yamdb/api_yamdb/.env
+    volumes:
+      - static:/app/api_yamdb/static
+  frontend:
+    env_file: ../react-vite-yamdb/.env
+    build:
+      context: ../react-vite-yamdb
+      dockerfile: Dockerfile
+    volumes:
+      - front:/app/dist/
+    depends_on:
+      - backend
+  nginx:
+    image: nginx:1.19.3
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - front:/usr/share/nginx/html/
+      - ../redoc/:/usr/share/nginx/html/redoc/
+      - static:/var/html/static/
+    depends_on:
+      - backend
+      - frontend

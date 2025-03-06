@@ -30,24 +30,25 @@ export default function ShowTitles() {
     const [errorMessage, setErrorMessage] = useState('')
     const { loggedIn } = useAuthContext()
 
-    const pgOnChange = (pageNumber) => {
-        async function preloadTitlesPagination() {
-            setLoading(true)
-            api.getTitlesPagination(pageNumber).then(response => {
-                if (response) {
-                    setTitles(response.data)
-                    setCurrentPage(pageNumber)
-                }
+    async function preloadTitlesPagination(pageNumber) {
+        setLoading(true)
+        api.getTitlesPagination(pageNumber).then(response => {
+            if (response) {
+                setTitles(response.data)
+                setCurrentPage(pageNumber)
+            }
+            setLoading(false)
+        })
+            .catch(error => {
+                setErrorMessage(error)
                 setLoading(false)
-            })
-                .catch(error => {
-                    setErrorMessage(error)
-                    setLoading(false)
-                    setShowError(true)
+                setShowError(true)
 
-                })
-        }
-        preloadTitlesPagination()
+            })
+    }
+
+    const pgOnChange = (pageNumber) => {
+        preloadTitlesPagination(pageNumber)
     }
 
     async function preloadTitles() {
@@ -91,7 +92,7 @@ export default function ShowTitles() {
     };
 
     const getReviews = (id, name) => {
-        navigate(`/titles/${id}/reviews/`, { state:{title_name: name}})
+        navigate(`/titles/${id}/reviews/`, { state: { title_name: name } })
     };
 
     const editTitle = (id) => {
@@ -113,8 +114,8 @@ export default function ShowTitles() {
 
     return (
         <>
-             {contextHolder}
-             {loadingFullScr && < Spin fullscreen />}
+            {contextHolder}
+            {loadingFullScr && < Spin fullscreen />}
             <ShowError
                 showError={showError}
                 errorMessage={errorMessage}
@@ -149,7 +150,7 @@ export default function ShowTitles() {
                                     size='small'
                                     style={{ marginLeft: '1rem' }}
                                     danger
-                                    onClick={() => {delTitle(title.id, title.name)}}
+                                    onClick={() => { delTitle(title.id, title.name) }}
                                 >
                                     <Tooltip title="Удалить произведение">
                                         <DeleteOutlined />
@@ -160,7 +161,7 @@ export default function ShowTitles() {
                                     shape="circle"
                                     size='small'
                                     style={{ marginLeft: '1rem' }}
-                                    onClick={() => {getReviews(title.id, title.name)}}
+                                    onClick={() => { getReviews(title.id, title.name) }}
                                 >
                                     <Tooltip title="Отзывы к произведению">
                                         <FileTextTwoTone />
@@ -171,7 +172,7 @@ export default function ShowTitles() {
                                     shape="circle"
                                     size='small'
                                     style={{ marginLeft: '1rem' }}
-                                    onClick={() => {editTitle(title.id)}}
+                                    onClick={() => { editTitle(title.id) }}
                                 >
                                     <Tooltip title="Изменить произведение">
                                         <EditOutlined />
@@ -218,7 +219,8 @@ export default function ShowTitles() {
                     </Card>
                 ))}
             </Space>
-            {titles.results && <Pagination defaultCurrent={currentPage} total={titles.count} onChange={pgOnChange} />}
+            {titles.results?.length > 0 && <Pagination defaultCurrent={currentPage} total={titles.count} onChange={pgOnChange} />}
+            {titles.results?.length === 0 && <p>Произведения не найдены</p>}
         </>
     )
 }

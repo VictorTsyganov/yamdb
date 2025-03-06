@@ -48,11 +48,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'api_yamdb.urls'
 
 DATA_DIR = BASE_DIR / 'static/data'
-TEMPLATES_DIR = BASE_DIR / 'templates'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,10 +115,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'reviews.User'
-
-STATICFILES_DIRS = ((BASE_DIR / 'static/'),)
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
@@ -158,4 +159,5 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
     'http://localhost:5173',
     'http://127.0.0.1',
+    'http://localhost',
 ]

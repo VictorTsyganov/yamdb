@@ -9,7 +9,7 @@ import {
     SignatureOutlined
 } from '@ant-design/icons';
 import { useAuthContext } from '../../context/auth-context';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const { Header } = Layout;
 const headerStyle = {
     width: '100%',
@@ -31,6 +31,7 @@ const btnStyle = {
 }
 
 export default function AppHeader({ siderVisible, changeSiderVisible }) {
+    const navigate = useNavigate()
     const [siderVisibleIcon, setSiderVisibleIcon] = useState(true)
     const { loggedIn, userName, changeLoggedIn, setUserName } = useAuthContext()
     const [messageApi, contextHolder] = message.useMessage();
@@ -46,6 +47,7 @@ export default function AppHeader({ siderVisible, changeSiderVisible }) {
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('username')
         logoutMessage()
+        navigate('/')
     }
 
     return (

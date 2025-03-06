@@ -68,7 +68,7 @@ export default function ShowCategories() {
             <Space direction="vertical" style={spaseStyle}>
                 <h3 style={{ textAlign: 'left' }}>Поиск категории по названию</h3>
                 <div className="menuBox">
-                    <Input placeholder="Начните вводить название категории" {...input} />
+                    <Input placeholder="Начните вводить название категории" onChange={input.onChange} />
                     {loggedIn && <Button type="primary" style={{ marginLeft: '1rem' }} onClick={() => { setShowCreateCategory(true) }}>
                         Создать новую категорию
                     </Button>}

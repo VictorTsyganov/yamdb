@@ -19,7 +19,7 @@ export default function Login() {
     const location = useLocation()
     const onCloseModal = () => {
         setShowLogin(false)
-        navigate(-1)
+        navigate('/')
         form.resetFields()
     }
     const [messageApi, contextHolder] = message.useMessage();
